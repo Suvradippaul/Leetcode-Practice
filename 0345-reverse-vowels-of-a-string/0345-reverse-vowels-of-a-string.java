@@ -12,17 +12,13 @@ class Solution {
             while (i < j && !set.contains(chars[j])) {
             	j--;
             }
-            swap(chars, i, j);
+            char temp = chars[i];
+            chars[i] = chars[j];
+            chars[j] = temp;
             i++;
             j--;
         }
         
         return String.valueOf(chars);
-    }
-    
-    void swap(char[] chars, int i, int j) {
-        char temp = chars[i];
-        chars[i] = chars[j];
-        chars[j] = temp;
     }
 }
