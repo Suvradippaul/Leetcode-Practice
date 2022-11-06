@@ -6,20 +6,12 @@ class Solution {
 		long maxSum = 0;
 		
 		while (j < arr.length) {
-			if (j-i+1 < k) {         // window is less than K
-				if (!set.contains(arr[j])) {
+			if (!set.contains(arr[j])) {
+				if (j-i+1 < k) {
 					set.add(arr[j]);
 					sum += arr[j];
 				}
 				else {
-					i = j;
-					sum = arr[i];
-					set.clear();
-					set.add(arr[j]);
-				}
-			}
-			else if (j-i+1 == k && !set.contains(arr[j])){                 
-				if (!set.contains(arr[j])) {
 					set.add(arr[j]);
 					sum += arr[j];
 					maxSum = Math.max(maxSum, sum);
@@ -31,7 +23,7 @@ class Solution {
 			else {
 				i = j;
 				sum = arr[i];
-				set.clear();
+				set = new HashSet<>();
 				set.add(arr[j]);
 			}
 			j++;
