@@ -7,13 +7,9 @@ class Solution {
 		
 		while (j < arr.length) {
 			if (!set.contains(arr[j])) {
-				if (j-i+1 < k) {
-					set.add(arr[j]);
-					sum += arr[j];
-				}
-				else {
-					set.add(arr[j]);
-					sum += arr[j];
+                set.add(arr[j]);
+                sum += arr[j];
+                if (j-i+1 == k) {
 					maxSum = Math.max(maxSum, sum);
 					sum -= arr[i];
 					set.remove(arr[i]);
