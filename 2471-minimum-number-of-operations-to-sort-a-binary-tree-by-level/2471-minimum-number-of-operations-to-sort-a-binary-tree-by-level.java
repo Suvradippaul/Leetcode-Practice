@@ -5,10 +5,8 @@ class Solution {
     
     int solve(TreeNode node) {
 		Queue<TreeNode> queue = new LinkedList<>();
-		if (node == null)
-			return 0;
-
 		queue.add(node);
+        
         int count = 0;
         
 		while (!queue.isEmpty()) {
@@ -31,11 +29,10 @@ class Solution {
     
     int minSwaps(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
-        int[] sortedArr = new int[arr.length];
+        int[] sortedArr = arr.clone();
         
         for (int i = 0; i < arr.length; i++) {
             map.put(arr[i], i);
-            sortedArr[i] = arr[i];
         }
         
         Arrays.sort(sortedArr);
@@ -43,13 +40,13 @@ class Solution {
         int swaps = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != sortedArr[i]) {
-                int temp = map.get(sortedArr[i]);
-                int temp2 = map.get(arr[i]);
+                int index1 = map.get(sortedArr[i]);
+                int index2 = map.get(arr[i]);
                 
-                map.put(arr[i], temp);
-                map.put(sortedArr[i], temp2);
-                arr[temp] = arr[i];
-                arr[temp2] = sortedArr[i];
+                map.put(arr[i], index1);
+                map.put(sortedArr[i], index2);
+                arr[index1] = arr[i];
+                arr[index2] = sortedArr[i];
                 swaps++;
             }
         }
