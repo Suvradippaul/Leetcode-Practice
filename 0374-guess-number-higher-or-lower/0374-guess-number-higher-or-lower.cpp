@@ -15,8 +15,10 @@ public:
         
         while (lo <= hi) {
             int mid = lo + (hi-lo)/2;
-            if (guess(mid) == 0) return mid;
-            else if (guess(mid) == 1) lo = mid + 1;
+            
+            int num = guess(mid);
+            if (num == 0) return mid;
+            else if (num == 1) lo = mid + 1;
             else hi = mid - 1;
         }
         
