@@ -8,10 +8,11 @@ class Solution {
         int top = Math.min(ay2, by2);
         int bottom = Math.max(ay1, by1);
         
+        int overlap = 0;
         if (right > left && top > bottom) {
-            return sq1 + sq2 - ((right-left) * (top-bottom));
+            overlap = (right-left) * (top-bottom);
         }
         
-        return sq1 + sq2;
+        return sq1 + sq2 - overlap;
     }
 }
