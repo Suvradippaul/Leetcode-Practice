@@ -1,5 +1,6 @@
 class Solution {
     public int calculate(String s) {
+        s = s.trim();
         int n = s.length();
         int sign = 1;
         int result = 0;
