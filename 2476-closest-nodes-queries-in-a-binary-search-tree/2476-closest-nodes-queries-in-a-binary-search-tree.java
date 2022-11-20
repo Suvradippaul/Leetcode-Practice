@@ -13,17 +13,16 @@ class Solution {
         
         List<List<Integer>> ans = new ArrayList<>();
         int n = nodes.size();
-        Collections.sort(nodes);
         
         for (int q : queries) {            
-            if (q == nodes.get(0) || q == nodes.get(n-1)) {
+            if (q == nodes.get(0) || q == nodes.get(n-1)) {           // if value is already found, no need to do BS
             	ans.add(Arrays.asList(q, q));
             }
             else if (q < nodes.get(0)) {
-            	ans.add(Arrays.asList(-1, nodes.get(0)));
+            	ans.add(Arrays.asList(-1, nodes.get(0)));             // if value == first element, no need to do BS
             }
             else if (q > nodes.get(n-1)) {
-            	ans.add(Arrays.asList(nodes.get(n-1), -1));
+            	ans.add(Arrays.asList(nodes.get(n-1), -1));          // if value == last element, no need to do BS
             }
             else {
             	int lo = 0;
