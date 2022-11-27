@@ -9,7 +9,7 @@ class Pair {
 }
 
 
-// In this problem, you can use an array or you can modify the input array itself to mark cells as visited
+// In this problem, you can use a visited array or you can modify the input array itself to mark cells as visited
 class Solution {
     public int numIslands(char[][] grid) {
         int n = grid.length;
