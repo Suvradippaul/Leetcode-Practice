@@ -47,7 +47,7 @@ class Solution {
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < m; col++) {
                 if (grid[row][col] == '1') {
-                    bfs(grid, row, col);
+                    dfs(grid, row, col);
                     count++;
                 }
             }
@@ -56,26 +56,40 @@ class Solution {
         return count;
     }
     
-    void bfs(char[][] grid, int row, int col) {
-        grid[row][col] = '1';
+    // void bfs(char[][] grid, int row, int col) {
+    //     grid[row][col] = '1';
         
-        Queue<Pair> queue = new LinkedList<>();
-        queue.add(new Pair(row, col));
+    //     Queue<Pair> queue = new LinkedList<>();
+    //     queue.add(new Pair(row, col));
         
-        while (!queue.isEmpty()) {
-            Pair p = queue.poll();
-            row = p.row;
-            col = p.col;
+    //     while (!queue.isEmpty()) {
+    //         Pair p = queue.poll();
+    //         row = p.row;
+    //         col = p.col;
             
-            for (int dRow = -1; dRow <= 1; dRow++) {
-                for (int dCol = -1; dCol <= 1; dCol++) {
-                    int nRow = row + dRow;
-                    int nCol = col + dCol;
-                    if (nRow >= 0 && nRow < grid.length && nCol >= 0 && nCol < grid[0].length && grid[nRow][nCol] == '1') {
-                        grid[nRow][nCol] = '0';
-                        queue.add(new Pair(nRow, nCol));
-                    }
-                }
+    //         for (int dRow = -1; dRow <= 1; dRow++) {
+    //             for (int dCol = -1; dCol <= 1; dCol++) {
+    //                 int nRow = row + dRow;
+    //                 int nCol = col + dCol;
+    //                 if (nRow >= 0 && nRow < grid.length && nCol >= 0 && nCol < grid[0].length && grid[nRow][nCol] == '1') {
+    //                     grid[nRow][nCol] = '0';
+    //                     queue.add(new Pair(nRow, nCol));
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    
+    void dfs(char[][] grid, int row, int col) {
+        if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == '0') return;
+        
+        grid[row][col] = '0';
+        
+        for (int dRow = -1; dRow <= 1; dRow++) {
+            for (int dCol = -1; dCol <= 1; dCol++) {
+                int nRow = row + dRow;
+                int nCol = col + dCol;
+                dfs(grid, nRow, nCol);
             }
         }
     }
