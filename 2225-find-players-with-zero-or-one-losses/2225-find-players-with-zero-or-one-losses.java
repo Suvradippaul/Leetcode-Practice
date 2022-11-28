@@ -1,6 +1,6 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
-        Set<Integer> players = new TreeSet<>();
+        Set<Integer> players = new HashSet<>();
         Map<Integer, Integer> map = new HashMap<>();
         
         for (int[] match : matches) {
@@ -21,6 +21,9 @@ class Solution {
                 list1.add(player);
             }
         }
+        
+        Collections.sort(list0);
+        Collections.sort(list1);
         
         List<List<Integer>> ans = new ArrayList<>();
         ans.add(list0);
