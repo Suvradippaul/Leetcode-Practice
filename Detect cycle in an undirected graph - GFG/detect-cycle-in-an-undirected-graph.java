@@ -50,32 +50,47 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
             if (visited[i] != 1) {
-                if (detect(i, adj, visited)) return true;
+                // if (detect(i, adj, visited)) return true;
+                if (dfs(adj, i, -1, visited)) return true;
             }
         }
         
         return false;
     }
     
-    boolean detect(int src, ArrayList<ArrayList<Integer>> adj, int[] visited) {
-        visited[src] = 1;
-        ArrayDeque<Pair> queue = new ArrayDeque<>();
-        queue.add(new Pair(src, -1));
+    // boolean detect(int src, ArrayList<ArrayList<Integer>> adj, int[] visited) {
+    //     visited[src] = 1;
+    //     ArrayDeque<Pair> queue = new ArrayDeque<>();
+    //     queue.add(new Pair(src, -1));
         
-        while (!queue.isEmpty()) {
-            Pair p = queue.poll();
-            int node = p.node;
-            int parent = p.parent;
+    //     while (!queue.isEmpty()) {
+    //         Pair p = queue.poll();
+    //         int node = p.node;
+    //         int parent = p.parent;
             
-            for (int adjNode : adj.get(node)) {
-                if (visited[adjNode] != 1) {
-                    visited[adjNode] = 1;
-                    queue.add(new Pair(adjNode, node));
-                }
-                else if (parent != adjNode) return true;
-            }
-        }
+    //         for (int adjNode : adj.get(node)) {
+    //             if (visited[adjNode] != 1) {
+    //                 visited[adjNode] = 1;
+    //                 queue.add(new Pair(adjNode, node));
+    //             }
+    //             else if (parent != adjNode) return true;
+    //         }
+    //     }
         
-        return false;
-    }
+    //     return false;
+    // }
+    
+    boolean dfs(ArrayList<ArrayList<Integer>> adj, int node, int parent, int[] visited) {
+		if (visited[node] == 1) return true;
+		
+		visited[node] = 1;
+		
+		for (int adjNode : adj.get(node)) {
+			if (adjNode != parent) {
+				if (dfs(adj, adjNode, node, visited)) return true;
+			}
+		}
+		
+		return false;
+	}
 }
