@@ -14,27 +14,25 @@ class Solution {
         int n = grid.length;
         int m = grid[0].length;
         
-        boolean[][] visited = new boolean[n][m];
-
 		ArrayDeque<Pair> queue = new ArrayDeque<>();
 		for (int j = 0; j < m; j++) {
-			if (grid[0][j] == 1 && !visited[0][j]) {
+			if (grid[0][j] == 1) {
 				queue.add(new Pair(0, j));
-				visited[0][j] = true;
+                grid[0][j] = 9;               // 9 is a dummy number, just to mark it as visited
 			}
-			if (grid[n - 1][j] == 1 && !visited[n - 1][j]) {
+			if (grid[n - 1][j] == 1) {
 				queue.add(new Pair(n - 1, j));
-				visited[n - 1][j] = true;
+                grid[n-1][j] = 9;
 			}
 		}
 		for (int i = 0; i < n; i++) {
-			if (grid[i][0] == 1 && !visited[i][0]) {
+			if (grid[i][0] == 1) {
 				queue.add(new Pair(i, 0));
-				visited[i][0] = true;
+                grid[i][0] = 9;
 			}
-			if (grid[i][m - 1] == 1 && !visited[i][m - 1]) {
+			if (grid[i][m - 1] == 1) {
 				queue.add(new Pair(i, m - 1));
-				visited[i][m - 1] = true;
+                grid[i][m-1] = 9;
 			}
 		}
 
@@ -50,9 +48,9 @@ class Solution {
 				int row = r + dRow[i];
 				int col = c + dCol[i];
 
-				if (isValid(row, col, n, m) && grid[row][col] == 1 && !visited[row][col]) {
+				if (isValid(row, col, n, m) && grid[row][col] == 1) {
 					queue.add(new Pair(row, col));
-					visited[row][col] = true;
+                    grid[row][col] = 9;
 				}
 			}
 		}
@@ -60,7 +58,7 @@ class Solution {
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				if (grid[i][j] == 1 && !visited[i][j]) {
+				if (grid[i][j] == 1) {
 					ans++;
 				}
 			}
