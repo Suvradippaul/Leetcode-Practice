@@ -1,3 +1,11 @@
+// INTUITION - 
+// 1. Touch all the cells that are connected to boundary directly or indirectly. Mark them as visited
+// 2. Then for cells with 'O' which are not connected to boundary in any way, turn them into 'X'
+
+// STEPS - 
+// 1. BFS on cells that are 'O' and are on boundary. Mark all cells connected to them as visited
+// 2. Then for cells with 'O' which are unvisited, turn them into 'X'
+
 class Pair {
 	int row;
 	int col;
