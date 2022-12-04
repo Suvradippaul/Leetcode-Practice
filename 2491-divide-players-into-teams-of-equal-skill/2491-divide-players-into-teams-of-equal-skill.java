@@ -8,21 +8,17 @@ class Solution {
         int reqSkill = sum(skills)/ (n/2);
         int[][] skillPair = new int[n/2][2];
         
+        long ans = 0;
 		while (i < j) {
 			int skill = skills[i];
-			if (skills[j] == reqSkill-skill) {
-				skillPair[i][0] = skill;
-                skillPair[i][1] = reqSkill-skill;
+            int otherSkill = reqSkill-skill;
+			if (skills[j] == otherSkill) {
+				ans += skill * otherSkill;
 				i++;
 				j--;
 			}
 			else return -1;
 		}
-		
-		long ans = 0;
-        for (int[] pair : skillPair) {
-        	ans += pair[0] * pair[1];
-        }
         
         return ans;	
     }
