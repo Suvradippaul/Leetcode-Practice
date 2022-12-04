@@ -6,7 +6,6 @@ class Solution {
 		int i = 0;
 		int j = n-1;
         int reqSkill = sum(skills)/ (n/2);
-        int[][] skillPair = new int[n/2][2];
         
         long ans = 0;
 		while (i < j) {
