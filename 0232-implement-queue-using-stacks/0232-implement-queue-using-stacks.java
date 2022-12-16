@@ -1,20 +1,18 @@
 class MyQueue {
     Stack<Integer> stack;
-    Stack<Integer> temp;
 
     public MyQueue() {
         stack = new Stack();
-        temp = new Stack();
     }
     
     public void push(int x) {
-        while (!stack.isEmpty()) {
-            temp.push(stack.pop());
+        if (stack.isEmpty()) {
+            stack.push(x);
+            return;
         }
-        stack.push(x);
-        while (!temp.isEmpty()) {
-            stack.push(temp.pop());
-        }
+        int temp = stack.pop();
+        push(x);
+        stack.push(temp);
     }
     
     public int pop() {
