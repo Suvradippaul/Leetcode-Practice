@@ -37,7 +37,7 @@ class Solution {
         int add = 0;
         int i = 2;
         while (n != 1 && i <= n) {
-            if (isPrime[i] && n%i == 0) {
+            if (n%i == 0) {
                 n /= i;
                 add += i;
             }
