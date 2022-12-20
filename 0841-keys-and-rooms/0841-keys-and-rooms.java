@@ -16,6 +16,7 @@ class Solution {
                     visited[canBeUnlocked] = true;
                     queue.add(canBeUnlocked);
                     roomsVisited++;
+                    if (roomsVisited == totalRooms) return true;
                 }
             }
         }
