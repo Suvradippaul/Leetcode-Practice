@@ -62,9 +62,7 @@ class Solution
                     visited[adjNode] = (visited[node] == 1) ? 0 : 1;
                     queue.add(adjNode);
                 }
-                else {
-                    if (visited[node] == visited[adjNode]) return false;
-                }
+                else if (visited[node] == visited[adjNode]) return false;
             }
         }
         
