@@ -49,23 +49,39 @@ class Solution
         return true;
     }
     
-    boolean check(int start, ArrayList<ArrayList<Integer>>adj, int[] visited) {
-        visited[start] = 0;
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(start);
+    boolean check(int node, ArrayList<ArrayList<Integer>> adj, int[] visited) {
+		if (visited[node] == -1) visited[node] = 0;   // initial starting node to be colored with 0.
+		
+		for (int neighbour : adj.get(node)) {
+			if (visited[neighbour] == -1) {
+				visited[neighbour] = (visited[node] == 1) ? 0 : 1;
+				if (!check(neighbour, adj, visited)) return false;
+			}
+			else if (visited[neighbour] == visited[node]) { // the neighbour is visited and is having same color as current node
+				return false;
+			}
+		}
+		
+		return true;
+	}
+    
+    // boolean check(int start, ArrayList<ArrayList<Integer>>adj, int[] visited) {
+    //     visited[start] = 0;
+    //     Queue<Integer> queue = new LinkedList<>();
+    //     queue.add(start);
         
-        while (!queue.isEmpty()) {
-            int node = queue.poll();
+    //     while (!queue.isEmpty()) {
+    //         int node = queue.poll();
             
-            for (int adjNode : adj.get(node)) {
-                if (visited[adjNode] == -1) {
-                    visited[adjNode] = (visited[node] == 1) ? 0 : 1;
-                    queue.add(adjNode);
-                }
-                else if (visited[node] == visited[adjNode]) return false;
-            }
-        }
+    //         for (int adjNode : adj.get(node)) {
+    //             if (visited[adjNode] == -1) {
+    //                 visited[adjNode] = (visited[node] == 1) ? 0 : 1;
+    //                 queue.add(adjNode);
+    //             }
+    //             else if (visited[node] == visited[adjNode]) return false;
+    //         }
+    //     }
         
-        return true;
-    }
+    //     return true;
+    // }
 }
