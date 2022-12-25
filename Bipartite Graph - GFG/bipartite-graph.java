@@ -49,6 +49,8 @@ class Solution
         return true;
     }
     
+    
+    // dfs technique
     boolean check(int node, ArrayList<ArrayList<Integer>> adj, int[] visited) {
 		if (visited[node] == -1) visited[node] = 0;   // initial starting node to be colored with 0.
 		
@@ -65,6 +67,8 @@ class Solution
 		return true;
 	}
     
+    
+    // bfs technique
     // boolean check(int start, ArrayList<ArrayList<Integer>>adj, int[] visited) {
     //     visited[start] = 0;
     //     Queue<Integer> queue = new LinkedList<>();
