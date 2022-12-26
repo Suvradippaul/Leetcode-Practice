@@ -23,9 +23,9 @@ class Solution {
 		
 		for (int neighbour : adj[i]) {
 			if (visited[neighbour] == 0) {
-				if (!isSafe(neighbour, adj, visited, pathVisited)) return false;     // this path could not reach destination, so it cannot be a safe node.
+				if (!isSafe(neighbour, adj, visited, pathVisited)) return false;
 			}
-			else if (visited[neighbour] == 1 && pathVisited[neighbour] == 1) {  // a cycle is present. So cannot be a safe node
+			else if (visited[neighbour] == 1 && pathVisited[neighbour] == 1) {
 				return false;
 			}
 		}
