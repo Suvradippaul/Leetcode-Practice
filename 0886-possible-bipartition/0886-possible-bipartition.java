@@ -3,6 +3,8 @@
 // 2. This means, it does not matter if B dislikes A or not. A and B cannot be in same group.
 // 3. Therefore, we can consider that B also dislikes A.
 // 4. Hence, we can create an undirected graph of dislikes of A and B.
+// 5. Now we just need to check - Can we divide every alternate person to a different group.
+// 6. Means person A belongs to group 1. Then all neighbours cannot belong to group 1, but all of them can belong to group 2.
 
 // Note : This question uses 1-based indexing.
 class Solution {
