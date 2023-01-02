@@ -1,6 +1,5 @@
 class Solution {
     public int minimumPartition(String s, int k) {
-        if (s.length() < 10 && k < 10 && Integer.parseInt(s) <= k) return 1;
 		int parts = 0;
 		int left = 0;
 		int right = 0;
