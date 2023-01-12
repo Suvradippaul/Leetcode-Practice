@@ -14,28 +14,35 @@ class Solution {
         int[] visited = new int[n];
         int[] ans = new int[n];
         
-        solve(0, adj, labels, visited, new HashMap<>(), ans);
+        solve(0, adj, labels, visited, new int[26], ans);
         
         return ans;
     }
     
-    void solve(int node, List<List<Integer>> adj, String labels, int[] visited, Map<Character, Integer> map, int[] ans) {
+    void solve(int node, List<List<Integer>> adj, String labels, int[] visited, int[] map, int[] ans) {
         visited[node] = 1;
         
         for (int neighbour : adj.get(node)) {
             
             if (visited[neighbour] == 0) {
-                HashMap<Character, Integer> newMap = new HashMap<>();
+                // HashMap<Character, Integer> newMap = new HashMap<>();
+                int[] newMap = new int[26];
                 solve(neighbour, adj, labels, visited, newMap, ans);
-                for (var entry : newMap.entrySet()) {
-					char ch = entry.getKey();
-					map.put(ch, map.getOrDefault(ch, 0) + entry.getValue());
-				}
+				// for (var entry : newMap.entrySet()) {
+				// 	char ch = entry.getKey();
+				// 	map.put(ch, map.getOrDefault(ch, 0) + entry.getValue());
+				// }
+                for (int i = 0; i < 26; i++) {
+                    map[i] += newMap[i];
+                }
             }
         }
         
-        char ch = labels.charAt(node);
-        map.put(ch, map.getOrDefault(ch, 0)+1);
-        ans[node] = map.get(ch);
+        int i = (int) (labels.charAt(node) - 'a');
+        // map.put(ch, map.getOrDefault(ch, 0)+1);
+        // ans[node] = map.get(ch);
+        
+        // map[i]++;
+        ans[node] = ++map[i];
     }
 }
