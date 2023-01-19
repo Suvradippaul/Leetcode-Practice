@@ -8,7 +8,6 @@ class Solution {
         int n = nums.length;
         
         int freq[] = new int[k];
-        Arrays.fill(freq, 0);
         freq[0] = 1;
         
         int count = 0, sum = 0;
