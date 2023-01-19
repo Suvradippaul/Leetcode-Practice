@@ -1,20 +1,26 @@
+// what count be remainder
+// 0 to max k-1
+// so we are creating freq[i]  ---> number of time rem occurs
+// i is rem
+
 class Solution {
     public int subarraysDivByK(int[] nums, int k) {
-        int sum = 0;
-        int ans = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);
+        int n = nums.length;
         
-        for (int n : nums) {
-            sum += n;
-            int tempSum = sum%k;
-            if (tempSum < 0) tempSum += k;
-            if (map.containsKey(tempSum)) {
-                ans += map.get(tempSum);
-            }
-            map.put(tempSum,map.getOrDefault(tempSum,0) + 1);
-        }
+        int freq[] = new int[k];
+        Arrays.fill(freq, 0);
+        freq[0] = 1;
         
-        return ans;
+        int count = 0, sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
+            int rem = sum % k;
+            //if rem is negative, make it positive
+            if(rem < 0) rem += k;
+            //increase freq of count
+            count += freq[rem];
+            freq[rem]++;
+       }
+       return count;
     }
 }
