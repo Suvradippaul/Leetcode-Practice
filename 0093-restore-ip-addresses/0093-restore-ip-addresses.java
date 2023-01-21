@@ -1,20 +1,20 @@
 class Solution {
     public List<String> restoreIpAddresses(String s) {
         List<String> ans = new ArrayList<>();
-        solve(s, 0, 0, "", ans);
+        solve(s, 0, 0, new StringBuilder(), ans);
         return ans;
     }
     
-    void solve(String s, int i, int parts, String str, List<String> ans) {
+    void solve(String s, int i, int parts, StringBuilder str, List<String> ans) {
         if (parts > 4 || i > s.length()) return;
         if (i == s.length()) {
-        	if (parts == 4) ans.add(str.substring(0, str.length()-1));
+        	if (parts == 4) ans.add(str.substring(0, str.length()-1).toString());
         	return;
         }
         
         for (int index = i; index < i+3 && index < s.length(); index++) {
             if (valid(s, i, index)) {
-                solve(s, index+1, parts+1, str + s.substring(i, index+1) + ".", ans);
+                solve(s, index+1, parts+1, new StringBuilder(str).append(s.substring(i, index+1) + "."), ans);
             }
         }
     }
